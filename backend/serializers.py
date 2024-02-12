@@ -1,8 +1,20 @@
 from rest_framework import serializers
-from backend.models import User
+from backend.models import Item, Tag, Category
 
 
-class UserSerializer(serializers.ModelSerializer):
+class ItemSerializer(serializers.ModelSerializer):
     class Meta:
-        model = User
-        fields = ['id', 'name', 'email', 'created_at', 'updated_at']
+        model = Item
+        fields = ['sku', 'name', 'category', 'in_stock', 'available_stock', 'created_at', 'updated_at']
+
+
+class TagSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Tag
+        fields = ['id', 'sku', 'name', 'icon', 'created_at', 'updated_at']
+
+
+class CategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Category
+        fields = ['id', 'name', 'icon', 'created_at', 'updated_at']
