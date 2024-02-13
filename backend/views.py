@@ -192,19 +192,40 @@ def dashboard(request):
         - Body: HTML content for the dashboard.
     """
 
-    if request.method != 'GET':
-        return Response({'message': 'Method not allowed'}, status=405)
+    if request.method == 'POST':
+        category_id = request.POST.get('category_id')
+        in_stock_min = request.POST.get('in_stock_min')
+        in_stock_max = request.POST.get('in_stock_max')
+        available_stock_min = request.POST.get('available_stock_min')
+        available_stock_max = request.POST.get('available_stock_max')
+        search = request.POST.get('search')
+        print(category_id, in_stock_min, in_stock_max, available_stock_min, available_stock_max, search)
+
+        filters = {}
+        if category_id:
+            filters['category__id'] = category_id
+        if in_stock_min:
+            filters['in_stock__gte'] = in_stock_min
+        if in_stock_max:
+            filters['in_stock__lte'] = in_stock_max
+        if available_stock_min:
+            filters['available_stock__gte'] = available_stock_min
+        if available_stock_max:
+            filters['available_stock__lte'] = available_stock_max
+        if search:
+            filters['name__icontains'] = search
+
+        items = Item.objects.filter(**filters)
+    else:
+        items = Item.objects.all()
 
     categories = Category.objects.all()
     tags = Tag.objects.all()
-    items = Item.objects.all()
-
     tag_item = TagItem.objects.all()
     new_items = []
     for item in items:
         tags = tag_item.filter(sku=item.id)
         item.tags = tags
-        print(tags)
         new_items.append(item)
 
     return render(request, 'dashboard.html', {'categories': categories, 'tags': tags, 'items': new_items})

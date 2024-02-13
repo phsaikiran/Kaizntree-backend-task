@@ -13,6 +13,15 @@
 </form>
 
 <h2>Items List</h2>
+<form class="form-container" method="post" action="dashboard">
+	{% csrf_token %}
+	<input type="text" name="search" placeholder="Search">
+	<input type="number" name="in_stock_min" placeholder="In stock min">
+	<input type="number" name="in_stock_max" placeholder="In stock max">
+	<input type="number" name="available_stock_min" placeholder="Available stock min">
+	<input type="number" name="available_stock_max" placeholder="Available stock max">
+	<button type="submit">Search</button>
+</form>
 <div class="table-container">
 	<table>
 		<tr>
