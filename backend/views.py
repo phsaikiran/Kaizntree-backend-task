@@ -87,7 +87,7 @@ def item_create(request):
 
 @login_required
 @api_view(['GET'])
-def get_item(request, id):
+def get_item(request, pk):
     """
     Get an item by ID.
     Method:
@@ -103,7 +103,7 @@ def get_item(request, id):
     """
 
     try:
-        item = Item.objects.get(id=id)
+        item = Item.objects.get(id=pk)
     except Item.DoesNotExist:
         return Response({'message': 'Item not found'}, status=404)
 
