@@ -11,10 +11,10 @@ class ItemSerializer(serializers.ModelSerializer):
 class TagSerializer(serializers.ModelSerializer):
     class Meta:
         model = Tag
-        fields = ['id', 'sku', 'name', 'icon', 'created_at', 'updated_at']
+        fields = ['id', 'name', 'icon', 'created_at', 'updated_at']
 
 
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
-        fields = ['id', 'name', 'icon', 'created_at', 'updated_at']
+        fields = ['id', 'name', 'created_at', 'updated_at']
