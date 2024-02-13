@@ -26,7 +26,10 @@ DEBUG = True
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'backend')
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'localhost',
+    'kaizntree-backend-app-6a53771aa6a2.herokuapp.com'
+]
 
 # Application definition
 
