@@ -1,1 +1,17 @@
-Dashboard
+{% extends 'base.html' %}
+
+{% block content %}
+
+<form class="form-container" method="post" action="category/create">
+	{% csrf_token %}
+	<button type="submit">Create Category</button>
+</form>
+
+<form class="form-container" method="post" action="item/create">
+	{% csrf_token %}
+	<button type="submit">Create Item</button>
+</form>
+
+<h2>Items List</h2>
+
+{% endblock %}

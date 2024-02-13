@@ -2,7 +2,7 @@
 
 {% block content %}
 <h2>Add New Item</h2>
-<form method="post" action="/item/create">
+<form class="form-container" method="post" action="/item/create">
 	{% csrf_token %}
 	{{ form.as_p }}
 	<button type="submit">Add Item</button>
