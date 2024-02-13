@@ -34,7 +34,7 @@ class TagItem(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.sku.name + ' - ' + self.tag.name
+        return self.tag.name
 
 
 class Category(models.Model):

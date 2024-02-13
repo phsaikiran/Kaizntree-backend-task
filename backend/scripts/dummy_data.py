@@ -9,9 +9,9 @@ def run():
     category3 = Category.objects.create(name='Books')
 
     # Create tags
-    tag1 = Tag.objects.create(name='High-Performance', icon='⚡️')
-    tag2 = Tag.objects.create(name='Casual', icon='😎')
-    tag3 = Tag.objects.create(name='Programming', icon='💻')
+    tag1 = Tag.objects.create(name='⚡️', icon='⚡️')
+    tag2 = Tag.objects.create(name='😎', icon='😎')
+    tag3 = Tag.objects.create(name='💻', icon='💻')
 
     # Create items
     item1 = Item.objects.create(
@@ -48,5 +48,6 @@ def run():
     tag_item1 = TagItem.objects.create(sku=item1, tag=tag1, created_at=timezone.now(), updated_at=timezone.now())
     tag_item2 = TagItem.objects.create(sku=item2, tag=tag2, created_at=timezone.now(), updated_at=timezone.now())
     tag_item3 = TagItem.objects.create(sku=item3, tag=tag3, created_at=timezone.now(), updated_at=timezone.now())
+    tag_item4 = TagItem.objects.create(sku=item1, tag=tag3, created_at=timezone.now(), updated_at=timezone.now())
 
     print("Dummy data created successfully.")

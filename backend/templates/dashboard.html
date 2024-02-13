@@ -13,5 +13,31 @@
 </form>
 
 <h2>Items List</h2>
+<div class="table-container">
+	<table>
+		<tr>
+			<th>SKU</th>
+			<th>Item Name</th>
+			<th>Tags</th>
+			<th>Category</th>
+			<th>In Stock</th>
+			<th>Available Stock</th>
+		</tr>
+		{% for item in items %}
+		<tr>
+			<td>{{ item.sku }}</td>
+			<td>{{ item.name }}</td>
+			<td>
+				{% for tag in item.tags %}
+				{{ tag }}
+				{% endfor %}
+			</td>
+			<td>{{ item.category }}</td>
+			<td>{{ item.in_stock }}</td>
+			<td>{{ item.available_stock }}</td>
+		</tr>
+		{% endfor %}
+	</table>
+</div>
 
 {% endblock %}

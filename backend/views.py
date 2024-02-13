@@ -6,7 +6,7 @@ from django.shortcuts import render, redirect
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
-from backend.models import Item, Category, Tag
+from backend.models import Item, Category, Tag, TagItem
 from .forms import ItemForm, CategoryForm
 from .serializers import ItemSerializer, CategorySerializer, TagSerializer
 
@@ -194,7 +194,20 @@ def dashboard(request):
 
     if request.method != 'GET':
         return Response({'message': 'Method not allowed'}, status=405)
-    return render(request, 'dashboard.html')
+
+    categories = Category.objects.all()
+    tags = Tag.objects.all()
+    items = Item.objects.all()
+
+    tag_item = TagItem.objects.all()
+    new_items = []
+    for item in items:
+        tags = tag_item.filter(sku=item.id)
+        item.tags = tags
+        print(tags)
+        new_items.append(item)
+
+    return render(request, 'dashboard.html', {'categories': categories, 'tags': tags, 'items': new_items})
 
 
 def register(request):
